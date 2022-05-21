@@ -1,0 +1,22 @@
+version: "3"
+services:
+  storage-1:
+    image: ghcr.io/reduct-storage/reduct-storage:main
+    environment:
+      RS_API_BASE_PATH: "storage-1/"
+    volumes:
+      - ./storage-1:/data
+
+  storage-2:
+    image: ghcr.io/reduct-storage/reduct-storage:main
+    environment:
+      RS_API_BASE_PATH: "storage-2/"
+    volumes:
+      - ./storage-2:/data
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
